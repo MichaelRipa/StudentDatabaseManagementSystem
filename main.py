@@ -25,8 +25,10 @@ class PostgreSQLDatabase:
         values = (first_name, last_name, email, enrollment_date)
         self.cursor.execute(insert_sql, values)
 
-    def updateStudentEmail(self, student_id : int, new_email : str):
-            pass
+    def updateStudentEmail(self, new_email : str, student_id : int):
+        update_sql = f'UPDATE {self.args.default_table} SET email = %s WHERE student_id = %s'
+        values = (new_email, student_id)
+        self.cursor.execute(update_sql, values)
 
     def deleteStudent(self, student_id : int):
         pass
@@ -62,7 +64,7 @@ if __name__ == '__main__':
     pretty_print(db.getAllStudents())
 
     print('Question 3:')
-    q3 = db.updateStudentEmail(1,'newemail@email.com')
+    q3 = db.updateStudentEmail('newemail@email.com', 1)
     print('Result:')
     pretty_print(db.getAllStudents())
 
