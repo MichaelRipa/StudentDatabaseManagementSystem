@@ -12,14 +12,18 @@ class PostgreSQLDatabase:
             password=args.password,
             port=args.port
         )
+        # Create cursor for executing PostgreSQL commands in db session
         self.cursor = self.conn.cursor()
+        self.args = args
 
     def getAllStudents(self):
         self.cursor.execute(f'SELECT * FROM {args.default_table}')
         return(self.cursor.fetchall())
 
     def addStudent(self, first_name : str, last_name : str, email : str, enrollment_date : date):
-        pass
+        insert_sql = f'INSERT INTO {self.args.default_table} (first_name, last_name, email, enrollment_date) VALUES (%s, %s, %s, %s)'
+        values = (first_name, last_name, email, enrollment_date)
+        self.cursor.execute(insert_sql, values)
 
     def updateStudentEmail(self, student_id : int, new_email : str):
             pass
