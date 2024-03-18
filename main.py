@@ -31,7 +31,11 @@ class PostgreSQLDatabase:
         self.cursor.execute(update_sql, values)
 
     def deleteStudent(self, student_id : int):
-        pass
+        delete_sql = f'DELETE FROM {self.args.default_table} WHERE student_id = %s'
+        values = (student_id,)
+        self.cursor.execute(delete_sql, values)
+
+        
 
 def pretty_print(table):
     '''Helper function which prints query results in consistent format'''
