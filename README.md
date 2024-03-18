@@ -27,5 +27,8 @@ Run the main.py script with the necessary command-line arguments:
 - `updateStudentEmail(new_email, student_id)`: Updates the email address of an existing student.
 - `deleteStudent(student_id)`: Deletes a student from the database.
 
+## Video Demo
+A demo of the core functionalities can be found [here](https://drive.google.com/file/d/1mLnwBFzf7Bxa0wcGNvnn6S8irZOB9BA-/view?usp=sharing)
+
 ## License
 This project is licensed under the MIT License.
