@@ -53,6 +53,7 @@ if __name__ == '__main__':
     parser.add_argument('--user', type=str, required=False, default='postgres')        
     parser.add_argument('--port', type=int, required=False, default=5432)        
     parser.add_argument('--default_table', type=str, required=False, default='students')        
+    parser.add_argument('--commit', type=bool, required=False, default=False)
 
     args = parser.parse_args()
 
@@ -76,3 +77,9 @@ if __name__ == '__main__':
     q4 = db.deleteStudent(1)
     print('Result:')
     pretty_print(db.getAllStudents())
+
+    if args.commit:
+        print('Commiting changes!')
+        db.conn.commit()
+
+    db.conn.close()
